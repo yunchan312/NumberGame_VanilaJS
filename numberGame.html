@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="numberGame.css" />
+    <title>Numbers!</title>
+  </head>
+  <body>
+    <header>
+      <h1>Numbers!</h1>
+      <div>Guess Number between 1~100</div>
+    </header>
+    <main>
+      <div class="wrapper">
+        <div class="box">?</div>
+        <form class="form">
+          <input
+            class="inputInForm"
+            type="number"
+            placeholder="Guess Number!!"
+          />
+        </form>
+
+        <div class="updowns">Your answer</div>
+      </div>
+    </main>
+    <script>
+      const answer = Math.floor(Math.random() * 100);
+      const formWrapper = document.querySelector(".form");
+      const inputValue = document.querySelector(".inputInForm");
+      const box = document.querySelector(".box");
+      const updowns = document.querySelector(".updowns");
+      function checker() {
+        if (inputValue.value == answer) {
+          updowns.innerText = "Correct!";
+          box.innerText = answer;
+        } else {
+          if (inputValue.value > answer) {
+            updowns.innerText = "DOWN!";
+          } else {
+            updowns.innerText = "UP!";
+          }
+        }
+      }
+      function handleForm(e) {
+        e.preventDefault();
+      }
+      function getInputValue() {
+        checker();
+      }
+
+      formWrapper.addEventListener("submit", handleForm);
+      inputValue.addEventListener("change", getInputValue);
+    </script>
+  </body>
+</html>
